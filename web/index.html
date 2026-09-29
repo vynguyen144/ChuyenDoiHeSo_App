@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Máy tính đổi hệ cơ số</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>Máy tính đổi hệ cơ số</h1>
+        <p>Binary • Octal • Decimal • Hexadecimal</p>
+    </header>
+
+
+    <main>
+
+        <section class="card">
+
+            <h2>Đổi hệ cơ số</h2>
+
+            <div class="row">
+
+                <div class="input-group">
+                    <label>Hệ ban đầu</label>
+
+                    <select id="sourceBase">
+                        <option value="2">Nhị phân (2)</option>
+                        <option value="8">Bát phân (8)</option>
+                        <option value="10" selected>Thập phân (10)</option>
+                        <option value="16">Thập lục phân (16)</option>
+                    </select>
+                </div>
+
+
+                <div class="arrow">
+                    →
+                </div>
+
+
+                <div class="input-group">
+                    <label>Hệ muốn đổi sang</label>
+
+                    <select id="targetBase">
+                        <option value="2">Nhị phân (2)</option>
+                        <option value="8">Bát phân (8)</option>
+                        <option value="10">Thập phân (10)</option>
+                        <option value="16">Thập lục phân (16)</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Số cần đổi</label>
+
+                <input
+                    type="text"
+                    id="numberInput"
+                    placeholder="Ví dụ: 1A3"
+                    autocomplete="off"
+                >
+
+                <small id="hint">
+                    Hệ 10: nhập các số từ 0 đến 9
+                </small>
+
+            </div>
+
+
+            <button id="convertButton">
+                ĐỔI SỐ
+            </button>
+
+
+            <button id="clearButton" class="secondary">
+                XÓA
+            </button>
+
+        </section>
+
+
+        <section id="errorBox" class="error hidden">
+        </section>
+
+
+        <section id="resultCard" class="card hidden">
+
+            <h2>Kết quả</h2>
+
+            <div id="result" class="result">
+            </div>
+
+        </section>
+
+
+        <section id="stepsCard" class="card hidden">
+
+            <h2>Chi tiết phép tính</h2>
+
+            <div id="steps">
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>Giá trị Hexadecimal</h2>
+
+            <div class="hex-table">
+
+                <span>0 = 0</span>
+                <span>1 = 1</span>
+                <span>2 = 2</span>
+                <span>3 = 3</span>
+                <span>4 = 4</span>
+                <span>5 = 5</span>
+                <span>6 = 6</span>
+                <span>7 = 7</span>
+                <span>8 = 8</span>
+                <span>9 = 9</span>
+                <span>A = 10</span>
+                <span>B = 11</span>
+                <span>C = 12</span>
+                <span>D = 13</span>
+                <span>E = 14</span>
+                <span>F = 15</span>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        Máy tính đổi hệ cơ số • JavaScript
+    </footer>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
