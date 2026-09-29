@@ -471,3 +471,14 @@ numberInput.addEventListener(
         }
     }
 );
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js")
+            .then(() => {
+                console.log("Service Worker đã đăng ký.");
+            })
+            .catch(error => {
+                console.error("Service Worker lỗi:", error);
+            });
+    });
+}
