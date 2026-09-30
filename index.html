@@ -49,7 +49,7 @@
                     <div class="feature-box">
                         <div class="feature-icon">🌐</div>
                         <h3>Chia mạng con tự động</h3>
-                        <p>Nhập bất kỳ đề bài mạng nào. Hệ thống tự động phân tích lớp mạng, số bit mượn, Subnet Mask mới, bước nhảy, xuất bảng địa chỉ và tạo mục giải thích quy tắc nhẩm.</p>
+                        <p>Nhập bất kỳ đề bài mạng nào. Hệ thống tự động phân tích lớp mạng, số bit mượn, Subnet Mask mới, bước nhảy, xuất bảng địa chỉ và bảng phân tích phép tính chi tiết.</p>
                     </div>
                 </div>
 
@@ -165,8 +165,9 @@
                     <div id="subnet-steps" class="solution-box"></div>
                 </section>
 
+                <!-- BẢNG 1: BẢNG VÙNG ĐỊA CHỈ IP -->
                 <section class="card" style="margin-top: 20px;">
-                    <h2>Vùng địa chỉ của các mạng con</h2>
+                    <h2>Bảng 1: Vùng địa chỉ của các mạng con</h2>
                     <div class="table-responsive">
                         <table id="subnet-result-table" class="result-table">
                             <thead>
@@ -187,6 +188,27 @@
                     </div>
                 </section>
 
+                <!-- BẢNG 2: BẢNG GIẢI THÍCH PHÉP TÍNH CHO TỪNG DÒNG -->
+                <section class="card" style="margin-top: 20px;">
+                    <h2>Bảng 2: Chi tiết phép tính để ra từng con số</h2>
+                    <p class="text-muted" style="margin-bottom: 12px;">Bảng đối chiếu cụ thể phép cộng/trừ nhẩm ở octet biến đổi cho từng mạng con:</p>
+                    <div class="table-responsive">
+                        <table id="subnet-calc-table" class="result-table">
+                            <thead>
+                                <tr>
+                                    <th>Mạng con</th>
+                                    <th>Cách tính Đ/c mạng</th>
+                                    <th>Cách tính Đ/c đầu</th>
+                                    <th>Cách tính Broadcast</th>
+                                    <th>Cách tính Đ/c cuối</th>
+                                </tr>
+                            </thead>
+                            <tbody id="subnet-calc-body"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- KHU VỰC NGHIÊN CỨU PHÉP TÍNH NHẨM & BẢN CHẤT -->
                 <section class="card" style="margin-top: 20px;">
                     <h2>💡 Giải thích chi tiết: Cách tính nhẩm & Bản chất từng cột</h2>
                     <div id="subnet-explanation-box" class="solution-box explanation-style"></div>

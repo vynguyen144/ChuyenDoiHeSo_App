@@ -31,7 +31,7 @@ body {
 
 .app-container {
     width: 100%;
-    max-width: 920px;
+    max-width: 960px;
 }
 
 /* HEADER */
@@ -350,13 +350,14 @@ select:focus, input:focus {
     width: 100%;
     border-collapse: collapse;
     background: #ffffff;
-    min-width: 650px;
+    min-width: 680px;
 }
 
 .result-table th, .result-table td {
     padding: 9px 12px;
     text-align: center;
     border: 1px solid var(--border-color);
+    font-size: 0.9rem;
 }
 
 .result-table th {
@@ -368,6 +369,16 @@ select:focus, input:focus {
 
 .result-table tbody tr:hover {
     background-color: #f8fafc;
+}
+
+.calc-step-text {
+    font-family: monospace;
+    font-size: 0.88rem;
+    color: #334155;
+}
+
+.calc-step-text strong {
+    color: var(--primary);
 }
 
 footer {

@@ -212,10 +212,13 @@ function solveSubnet(e) {
 
     document.getElementById('subnet-steps').innerHTML = analysisHtml;
 
-    // 1. Render bảng địa chỉ
+    // 1. Render Bảng 1: Vùng địa chỉ IP
     renderSubnetTable(octets, borrowBits, subnetsCount, totalHosts, targetOctetIndex);
 
-    // 2. Render giải thích phép tính nhẩm & bản chất nhị phân
+    // 2. Render Bảng 2: Chi tiết phép tính
+    renderCalculationTable(octets, subnetsCount, totalHosts, targetOctetIndex, step);
+
+    // 3. Render giải thích phép tính nhẩm & bản chất nhị phân
     renderQuickMathExplanation(step, targetOctetIndex + 1, remainHostBits, totalHosts);
 
     document.getElementById('subnet-result').style.display = 'block';
@@ -255,14 +258,73 @@ function renderSubnetTable(octets, borrowBits, subnetsCount, totalHosts, targetO
     }
 }
 
-function formatIpWithBinary(ipInt, targetIndex) {
-    const o = [
+// ==================== BẢNG 2: RENDER CHI TIẾT PHÉP TÍNH CHO TỪNG DÒNG ====================
+function renderCalculationTable(octets, subnetsCount, totalHosts, targetOctetIndex, step) {
+    const tbody = document.getElementById('subnet-calc-body');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    const baseInt = ((octets[0] << 24) | (octets[1] << 16) | (octets[2] << 8) | octets[3]) >>> 0;
+    const maxRender = Math.min(subnetsCount, 128);
+
+    for (let i = 0; i < maxRender; i++) {
+        const netInt = (baseInt + i * totalHosts) >>> 0;
+        const firstHostInt = (netInt + 1) >>> 0;
+        const bcastInt = (netInt + totalHosts - 1) >>> 0;
+        const lastHostInt = (bcastInt - 1) >>> 0;
+
+        const netOctets = getOctets(netInt);
+        const firstOctets = getOctets(firstHostInt);
+        const bcastOctets = getOctets(bcastInt);
+        const lastOctets = getOctets(lastHostInt);
+
+        // Công thức tính địa chỉ mạng
+        let netCalc = '';
+        if (i === 0) {
+            netCalc = `Mạng gốc ban đầu (bắt đầu bằng <strong>.${netOctets[3]}</strong>)`;
+        } else {
+            const prevNet = getOctets((baseInt + (i - 1) * totalHosts) >>> 0);
+            netCalc = `.${prevNet[targetOctetIndex]} + bước nhảy ${step} = <strong>.${netOctets[targetOctetIndex]}</strong>`;
+        }
+
+        // Công thức tính địa chỉ đầu
+        const firstCalc = `Đ/c mạng + 1 = .${netOctets[3]} + 1 = <strong>.${firstOctets[3]}</strong>`;
+
+        // Công thức tính broadcast
+        let bcastCalc = '';
+        if (i < subnetsCount - 1) {
+            const nextNet = getOctets((baseInt + (i + 1) * totalHosts) >>> 0);
+            bcastCalc = `Mạng kế (.${nextNet[targetOctetIndex]}) - 1 = <strong>.${bcastOctets[targetOctetIndex]}</strong>`;
+        } else {
+            bcastCalc = `Mạng cuối chạm ngưỡng = <strong>.${bcastOctets[targetOctetIndex]}</strong>`;
+        }
+
+        // Công thức tính địa chỉ cuối
+        const lastCalc = `Broadcast - 1 = .${bcastOctets[3]} - 1 = <strong>.${lastOctets[3]}</strong>`;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td style="font-weight: 600;">Mạng con ${i + 1}</td>
+            <td class="calc-step-text">${netCalc}</td>
+            <td class="calc-step-text">${firstCalc}</td>
+            <td class="calc-step-text">${bcastCalc}</td>
+            <td class="calc-step-text">${lastCalc}</td>
+        `;
+        tbody.appendChild(tr);
+    }
+}
+
+function getOctets(ipInt) {
+    return [
         (ipInt >>> 24) & 255,
         (ipInt >>> 16) & 255,
         (ipInt >>> 8) & 255,
         ipInt & 255
     ];
+}
 
+function formatIpWithBinary(ipInt, targetIndex) {
+    const o = getOctets(ipInt);
     const decStr = o.join('.');
     const binOctet = o[targetIndex].toString(2).padStart(8, '0');
 
@@ -308,6 +370,7 @@ function renderQuickMathExplanation(step, octetNum, hostBits, totalHosts) {
 function exportToWord() {
     const stepsContent = document.getElementById('subnet-steps').innerHTML;
     const tableContent = document.getElementById('subnet-result-table').outerHTML;
+    const calcTableContent = document.getElementById('subnet-calc-table').outerHTML;
     const ipStr = document.getElementById('network-ip').value.trim();
     const countReq = document.getElementById('req-count').value;
     const splitType = document.getElementById('split-type').value;
@@ -325,7 +388,7 @@ function exportToWord() {
           body { font-family: 'Times New Roman', serif; font-size: 13pt; line-height: 1.4; color: #000; }
           h2 { font-size: 15pt; font-weight: bold; margin-bottom: 8px; }
           p { margin: 6px 0; }
-          table { border-collapse: collapse; width: 100%; margin-top: 15px; }
+          table { border-collapse: collapse; width: 100%; margin-top: 15px; margin-bottom: 15px; }
           th, td { border: 1px solid #000; padding: 6px; text-align: center; font-size: 11pt; }
           th { background-color: #f2f2f2; font-weight: bold; }
         </style>
@@ -337,6 +400,8 @@ function exportToWord() {
         <div>${stepsContent}</div>
         <p style="margin-top: 15px;"><strong>Vùng địa chỉ của các mạng con:</strong></p>
         ${tableContent}
+        <p style="margin-top: 15px;"><strong>Chi tiết phép tính nhẩm cho từng mạng con:</strong></p>
+        ${calcTableContent}
       </body>
       </html>
     `;
