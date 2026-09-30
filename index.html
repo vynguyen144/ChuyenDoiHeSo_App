@@ -3,160 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Máy tính đổi hệ cơ số</title>
-
+    <title>Hệ Thống Tiện Ích Mạng & Hệ Cơ Số</title>
     <link rel="stylesheet" href="style.css">
-    
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#222222">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Đổi hệ cơ số">
 </head>
-
 <body>
 
-<div class="container">
+<div class="app-container">
 
     <header>
-        <h1>Máy tính đổi hệ cơ số</h1>
-        <p>Binary • Octal • Decimal • Hexadecimal</p>
+        <h1>Công Cụ Tin Học & Quản Trị Mạng</h1>
+        <p>Máy tính đổi hệ cơ số • Giải bài tập chia mạng con</p>
     </header>
 
+    <!-- THANH ĐIỀU HƯỚNG 3 TAB -->
+    <nav class="nav-tabs">
+        <button type="button" class="tab-btn" onclick="switchTab('home')">🏠 Trang chủ</button>
+        <button type="button" class="tab-btn active" onclick="switchTab('converter')">🔄 Đổi hệ cơ số</button>
+        <button type="button" class="tab-btn" onclick="switchTab('subnet')">🌐 Chia mạng con (Subnet)</button>
+    </nav>
 
     <main>
 
-        <section class="card">
-
-            <h2>Đổi hệ cơ số</h2>
-
-            <div class="row">
-
-                <div class="input-group">
-                    <label>Hệ ban đầu</label>
-
-                    <select id="sourceBase">
-                        <option value="2">Nhị phân (2)</option>
-                        <option value="8">Bát phân (8)</option>
-                        <option value="10" selected>Thập phân (10)</option>
-                        <option value="16">Thập lục phân (16)</option>
-                    </select>
+        <!-- ================= TAB 1: TRANG CHỦ ================= -->
+        <section id="tab-home" class="tab-content">
+            <div class="card">
+                <h2>Giới thiệu công cụ</h2>
+                <p>Ứng dụng tích hợp hỗ trợ học tập và thực hành các môn <strong>Kiến trúc máy tính</strong> và <strong>Quản trị mạng</strong>.</p>
+                
+                <div class="home-grid">
+                    <div class="home-item">
+                        <h3>🔄 1. Đổi hệ cơ số</h3>
+                        <p>Hỗ trợ chuyển đổi nhanh giữa các hệ đếm: Nhị phân (Bin - 2), Bát phân (Oct - 8), Thập phân (Dec - 10), và Thập lục phân (Hex - 16) kèm các bước giải thích chi tiết phép nhân/chia.</p>
+                    </div>
+                    <div class="home-item">
+                        <h3>🌐 2. Tự động chia mạng con</h3>
+                        <p>Nhập bất kỳ đề bài mạng nào (chia theo số lượng Subnet hoặc số Host mỗi phòng ban). Hệ thống tự phân tích lớp mạng, bit mượn, Subnet Mask mới, bước nhảy và xuất bảng địa chỉ chi tiết theo đúng mẫu bài nộp Word.</p>
+                    </div>
                 </div>
 
+                <div class="home-guide">
+                    <h3>💡 Hướng dẫn nhanh</h3>
+                    <p>• Nhấn tab <strong>Đổi hệ cơ số</strong> để chuyển đổi các hệ số từ 2, 8, 10, 16.</p>
+                    <p>• Nhấn tab <strong>Chia mạng con (Subnet)</strong> để nhập địa chỉ IP mạng và số mạng con/host cần chia để xem bảng giải bài tập tự động và xuất file Word.</p>
+                </div>
+            </div>
+        </section>
 
-                <div class="arrow">
-                    →
+        <!-- ================= TAB 2: ĐỔI HỆ CƠ SỐ ================= -->
+        <section id="tab-converter" class="tab-content active">
+
+            <section class="card">
+                <h2>Đổi hệ cơ số</h2>
+
+                <div class="converter-selectors">
+                    <div>
+                        <select id="fromBase">
+                            <option value="2">Nhị phân (2)</option>
+                            <option value="8">Bát phân (8)</option>
+                            <option selected value="10">Thập phân (10)</option>
+                            <option value="16">Thập lục phân (16)</option>
+                        </select>
+                    </div>
+
+                    <div class="arrow-symbol">→</div>
+
+                    <div>
+                        <select id="toBase">
+                            <option value="2">Nhị phân (2)</option>
+                            <option value="8">Bát phân (8)</option>
+                            <option value="10">Thập phân (10)</option>
+                            <option value="16">Thập lục phân (16)</option>
+                        </select>
+                    </div>
                 </div>
 
-
-                <div class="input-group">
-                    <label>Hệ muốn đổi sang</label>
-
-                    <select id="targetBase">
-                        <option value="2">Nhị phân (2)</option>
-                        <option value="8">Bát phân (8)</option>
-                        <option value="10">Thập phân (10)</option>
-                        <option value="16">Thập lục phân (16)</option>
-                    </select>
+                <div class="input-container">
+                    <input type="text" id="inputValue" placeholder="Nhập giá trị cần đổi...">
+                    <small id="inputHint">Hệ 10: nhập các số từ 0 đến 9</small>
                 </div>
+            </section>
 
-            </div>
+            <section class="card">
+                <h2>Kết quả</h2>
+                <div id="resultValue"></div>
+            </section>
 
+            <section class="card">
+                <h2>Chi tiết phép tính</h2>
+                <div id="calculationSteps"></div>
+            </section>
 
-            <div class="input-group">
-
-                <label>Số cần đổi</label>
-
-                <input
-                    type="text"
-                    id="numberInput"
-                    placeholder="Ví dụ: 1A3"
-                    autocomplete="off"
-                >
-
-                <small id="hint">
-                    Hệ 10: nhập các số từ 0 đến 9
-                </small>
-
-            </div>
-
-
-            <button id="convertButton">
-                ĐỔI SỐ
-            </button>
-
-
-            <button id="clearButton" class="secondary">
-                XÓA
-            </button>
-
-        </section>
-
-
-        <section id="errorBox" class="error hidden">
-        </section>
-
-
-        <section id="resultCard" class="card hidden">
-
-            <h2>Kết quả</h2>
-
-            <div id="result" class="result">
-            </div>
+            <section class="card">
+                <h2>Giá trị Hexadecimal</h2>
+                <div class="hex-grid">
+                    <span>0 = 0</span>
+                    <span>1 = 1</span>
+                    <span>2 = 2</span>
+                    <span>3 = 3</span>
+                    <span>4 = 4</span>
+                    <span>5 = 5</span>
+                    <span>6 = 6</span>
+                    <span>7 = 7</span>
+                    <span>8 = 8</span>
+                    <span>9 = 9</span>
+                    <span>A = 10</span>
+                    <span>B = 11</span>
+                    <span>C = 12</span>
+                    <span>D = 13</span>
+                    <span>E = 14</span>
+                    <span>F = 15</span>
+                </div>
+            </section>
 
         </section>
 
+        <!-- ================= TAB 3: CHIA MẠNG CON ĐỘNG ================= -->
+        <section id="tab-subnet" class="tab-content">
+            <section class="card">
+                <h2>Giải bài tập chia mạng con (Subnetting)</h2>
+                <p style="margin-bottom: 15px; color: #555;">Nhập thông số đề bài bất kỳ cần giải vào biểu mẫu dưới đây:</p>
 
-        <section id="stepsCard" class="card hidden">
+                <form id="subnet-form" onsubmit="solveSubnet(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="network-ip">Địa chỉ mạng gốc (Network IP):</label>
+                            <input type="text" id="network-ip" placeholder="VD: 192.168.1.0 hoặc 172.20.0.0" required>
+                        </div>
 
-            <h2>Chi tiết phép tính</h2>
+                        <div class="form-group">
+                            <label for="split-type">Đề bài yêu cầu chia theo:</label>
+                            <select id="split-type" onchange="toggleRequirementLabel()">
+                                <option value="subnets">Số lượng mạng con (Subnets)</option>
+                                <option value="hosts">Số Host/máy khả dụng mỗi mạng</option>
+                            </select>
+                        </div>
 
-            <div id="steps">
+                        <div class="form-group">
+                            <label id="req-label" for="req-count">Số mạng con cần chia:</label>
+                            <input type="number" id="req-count" min="1" max="1024" placeholder="VD: 8, 16, 32..." required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="margin-top: 15px;">
+                        🚀 Phân tích & Giải chi tiết
+                    </button>
+                </form>
+            </section>
+
+            <!-- Khung kết quả hiển thị tự động và nút xuất Word -->
+            <div id="subnet-result" style="display: none; margin-top: 20px;">
+                <section class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+                        <h2 style="margin: 0;">Lời giải & Phân tích chi tiết</h2>
+                        <button type="button" onclick="exportToWord()" class="btn btn-success">
+                            📄 Xuất bài làm ra file Word (.doc)
+                        </button>
+                    </div>
+                    <div id="subnet-steps" class="solution-box"></div>
+                </section>
+
+                <section class="card" style="margin-top: 20px;">
+                    <h2>Vùng địa chỉ của các mạng con</h2>
+                    <div class="table-responsive">
+                        <table id="subnet-result-table" class="result-table">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">STT</th>
+                                    <th rowspan="2">Đ/c mạng con</th>
+                                    <th colspan="2">Vùng đ/c IP của mạng con</th>
+                                    <th rowspan="2">Đ/c broadcast</th>
+                                    <th rowspan="2">Ghi chú</th>
+                                </tr>
+                                <tr>
+                                    <th>Đ/c đầu tiên</th>
+                                    <th>Đ/c cuối cùng</th>
+                                </tr>
+                            </thead>
+                            <tbody id="subnet-table-body"></tbody>
+                        </table>
+                    </div>
+                </section>
             </div>
-
-        </section>
-
-
-        <section class="card">
-
-            <h2>Giá trị Hexadecimal</h2>
-
-            <div class="hex-table">
-
-                <span>0 = 0</span>
-                <span>1 = 1</span>
-                <span>2 = 2</span>
-                <span>3 = 3</span>
-                <span>4 = 4</span>
-                <span>5 = 5</span>
-                <span>6 = 6</span>
-                <span>7 = 7</span>
-                <span>8 = 8</span>
-                <span>9 = 9</span>
-                <span>A = 10</span>
-                <span>B = 11</span>
-                <span>C = 12</span>
-                <span>D = 13</span>
-                <span>E = 14</span>
-                <span>F = 15</span>
-
-            </div>
-
         </section>
 
     </main>
 
-
     <footer>
-        Máy tính đổi hệ cơ số • JavaScript
+        Máy tính đổi hệ cơ số & Chia mạng con • JavaScript
     </footer>
 
 </div>
 
-
 <script src="script.js"></script>
-
 </body>
 </html>
