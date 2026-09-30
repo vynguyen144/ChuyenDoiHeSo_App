@@ -1,25 +1,28 @@
-const CACHE_NAME = "he-co-so-v1";
+const CACHE_NAME = 'app-cache-v3';
 
-const FILES_TO_CACHE = [
-    "./",
-    "./index.html",
-    "./style.css",
-    "./script.js",
-    "./manifest.json"
-];
+// Cài đặt: Buộc Service Worker mới kích hoạt ngay lập tức
+self.addEventListener('install', (event) => {
+    self.skipWaiting();
+});
 
-self.addEventListener("install", event => {
+// Kích hoạt: Tự động dọn sạch tất cả cache phiên bản cũ
+self.addEventListener('activate', (event) => {
     event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(FILES_TO_CACHE))
+        caches.keys().then((keys) => {
+            return Promise.all(
+                keys.map((key) => {
+                    if (key !== CACHE_NAME) {
+                        return caches.delete(key);
+                    }
+                })
+            );
+        }).then(() => self.clients.claim())
     );
 });
 
-self.addEventListener("fetch", event => {
+// Lấy dữ liệu: Network First (ưu tiên tải mới nhất từ mạng trước, mất mạng mới dùng cache)
+self.addEventListener('fetch', (event) => {
     event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                return response || fetch(event.request);
-            })
+        fetch(event.request).catch(() => caches.match(event.request))
     );
 });

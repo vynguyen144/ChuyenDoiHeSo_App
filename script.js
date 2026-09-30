@@ -1,3 +1,10 @@
+// Tự động kiểm tra và làm mới trang khi Service Worker phát hiện bản mới
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+        window.location.reload();
+    });
+}
+
 // ==================== 1. ĐIỀU KHIỂN TABS ====================
 function switchTab(tabId) {
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
