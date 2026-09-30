@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Tiện Ích Mạng & Hệ Cơ Số</title>
+    <title>Network & Base Toolbox</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
 </head>
@@ -11,16 +11,25 @@
 
 <div class="app-container">
 
-    <header>
-        <h1>Công Cụ Tin Học & Quản Trị Mạng</h1>
-        <p>Máy tính đổi hệ cơ số • Giải bài tập chia mạng con</p>
+    <header class="app-header">
+        <h1>Tiện Ích Mạng & Hệ Cơ Số</h1>
+        <p>Công cụ hỗ trợ học tập Quản trị mạng và Kiến trúc máy tính</p>
     </header>
 
-    <!-- THANH ĐIỀU HƯỚNG 3 TAB -->
+    <!-- THANH ĐIỀU HƯỚNG TABS -->
     <nav class="nav-tabs">
-        <button type="button" class="tab-btn" onclick="switchTab('home')">🏠 Trang chủ</button>
-        <button type="button" class="tab-btn active" onclick="switchTab('converter')">🔄 Đổi hệ cơ số</button>
-        <button type="button" class="tab-btn" onclick="switchTab('subnet')">🌐 Chia mạng con (Subnet)</button>
+        <button type="button" class="tab-btn" onclick="switchTab('home')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Trang chủ
+        </button>
+        <button type="button" class="tab-btn active" onclick="switchTab('converter')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+            Đổi hệ cơ số
+        </button>
+        <button type="button" class="tab-btn" onclick="switchTab('subnet')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="6" height="6" x="9" y="2" rx="1"/><rect width="6" height="6" x="2" y="16" rx="1"/><rect width="6" height="6" x="16" y="16" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg>
+            Chia mạng con
+        </button>
     </nav>
 
     <main>
@@ -29,23 +38,23 @@
         <section id="tab-home" class="tab-content">
             <div class="card">
                 <h2>Giới thiệu công cụ</h2>
-                <p>Ứng dụng tích hợp hỗ trợ học tập và thực hành các môn <strong>Kiến trúc máy tính</strong> và <strong>Quản trị mạng</strong>.</p>
+                <p class="text-muted">Ứng dụng tích hợp hỗ trợ giải các bài tập thực hành môn <strong>Kiến trúc máy tính</strong> và <strong>Quản trị mạng</strong>.</p>
                 
                 <div class="home-grid">
-                    <div class="home-item">
-                        <h3>🔄 1. Đổi hệ cơ số</h3>
-                        <p>Hỗ trợ chuyển đổi nhanh giữa các hệ đếm: Nhị phân (Bin - 2), Bát phân (Oct - 8), Thập phân (Dec - 10), và Thập lục phân (Hex - 16) kèm các bước giải thích chi tiết phép nhân/chia.</p>
+                    <div class="feature-box">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Đổi hệ cơ số</h3>
+                        <p>Hỗ trợ chuyển đổi nhanh giữa các hệ Nhị phân (Bin), Bát phân (Oct), Thập phân (Dec), và Thập lục phân (Hex) kèm giải thích chi tiết phép nhân lũy thừa và chia lấy dư.</p>
                     </div>
-                    <div class="home-item">
-                        <h3>🌐 2. Tự động chia mạng con</h3>
-                        <p>Nhập bất kỳ đề bài mạng nào (chia theo số lượng Subnet hoặc số Host mỗi phòng ban). Hệ thống tự phân tích lớp mạng, bit mượn, Subnet Mask mới, bước nhảy và xuất bảng địa chỉ chi tiết theo đúng mẫu bài nộp Word.</p>
+                    <div class="feature-box">
+                        <div class="feature-icon">🌐</div>
+                        <h3>Chia mạng con tự động</h3>
+                        <p>Nhập bất kỳ đề bài mạng nào. Hệ thống tự động phân tích lớp mạng, số bit mượn, Subnet Mask mới, bước nhảy, xuất bảng địa chỉ và tạo mục giải thích quy tắc nhẩm.</p>
                     </div>
                 </div>
 
-                <div class="home-guide">
-                    <h3>💡 Hướng dẫn nhanh</h3>
-                    <p>• Nhấn tab <strong>Đổi hệ cơ số</strong> để chuyển đổi các hệ số từ 2, 8, 10, 16.</p>
-                    <p>• Nhấn tab <strong>Chia mạng con (Subnet)</strong> để nhập địa chỉ IP mạng và số mạng con/host cần chia để xem bảng giải bài tập tự động và xuất file Word.</p>
+                <div class="tip-box">
+                    <strong>💡 Hướng dẫn nhanh:</strong> Chuyển sang tab <strong>Chia mạng con</strong> để tự động giải bài tập và tải bài làm về máy dưới dạng file Word (.doc).
                 </div>
             </div>
         </section>
@@ -56,8 +65,9 @@
             <section class="card">
                 <h2>Đổi hệ cơ số</h2>
 
-                <div class="converter-selectors">
-                    <div>
+                <div class="converter-row">
+                    <div class="select-col">
+                        <label class="label-sm">Cơ số nguồn:</label>
                         <select id="fromBase">
                             <option value="2">Nhị phân (2)</option>
                             <option value="8">Bát phân (8)</option>
@@ -66,9 +76,10 @@
                         </select>
                     </div>
 
-                    <div class="arrow-symbol">→</div>
+                    <div class="swap-arrow">→</div>
 
-                    <div>
+                    <div class="select-col">
+                        <label class="label-sm">Cơ số đích:</label>
                         <select id="toBase">
                             <option value="2">Nhị phân (2)</option>
                             <option value="8">Bát phân (8)</option>
@@ -78,7 +89,8 @@
                     </div>
                 </div>
 
-                <div class="input-container">
+                <div class="input-group">
+                    <label for="inputValue" class="label-sm">Giá trị cần đổi:</label>
                     <input type="text" id="inputValue" placeholder="Nhập giá trị cần đổi...">
                     <small id="inputHint">Hệ 10: nhập các số từ 0 đến 9</small>
                 </div>
@@ -86,43 +98,31 @@
 
             <section class="card">
                 <h2>Kết quả</h2>
-                <div id="resultValue"></div>
+                <div id="resultValue" class="result-display"></div>
             </section>
 
             <section class="card">
                 <h2>Chi tiết phép tính</h2>
-                <div id="calculationSteps"></div>
+                <div id="calculationSteps" class="steps-display"></div>
             </section>
 
             <section class="card">
-                <h2>Giá trị Hexadecimal</h2>
+                <h2>Bảng tra cứu Hexadecimal</h2>
                 <div class="hex-grid">
-                    <span>0 = 0</span>
-                    <span>1 = 1</span>
-                    <span>2 = 2</span>
-                    <span>3 = 3</span>
-                    <span>4 = 4</span>
-                    <span>5 = 5</span>
-                    <span>6 = 6</span>
-                    <span>7 = 7</span>
-                    <span>8 = 8</span>
-                    <span>9 = 9</span>
-                    <span>A = 10</span>
-                    <span>B = 11</span>
-                    <span>C = 12</span>
-                    <span>D = 13</span>
-                    <span>E = 14</span>
-                    <span>F = 15</span>
+                    <span>0 = 0</span><span>1 = 1</span><span>2 = 2</span><span>3 = 3</span>
+                    <span>4 = 4</span><span>5 = 5</span><span>6 = 6</span><span>7 = 7</span>
+                    <span>8 = 8</span><span>9 = 9</span><span>A = 10</span><span>B = 11</span>
+                    <span>C = 12</span><span>D = 13</span><span>E = 14</span><span>F = 15</span>
                 </div>
             </section>
 
         </section>
 
-        <!-- ================= TAB 3: CHIA MẠNG CON ĐỘNG ================= -->
+        <!-- ================= TAB 3: CHIA MẠNG CON ================= -->
         <section id="tab-subnet" class="tab-content">
             <section class="card">
-                <h2>Giải bài tập chia mạng con (Subnetting)</h2>
-                <p style="margin-bottom: 15px; color: #555;">Nhập thông số đề bài bất kỳ cần giải vào biểu mẫu dưới đây:</p>
+                <h2>Nhập đề bài chia mạng con</h2>
+                <p class="text-muted" style="margin-bottom: 15px;">Nhập thông số bất kỳ để tự động phân tích và giải chi tiết:</p>
 
                 <form id="subnet-form" onsubmit="solveSubnet(event)">
                     <div class="form-grid">
@@ -135,7 +135,7 @@
                             <label for="split-type">Đề bài yêu cầu chia theo:</label>
                             <select id="split-type" onchange="toggleRequirementLabel()">
                                 <option value="subnets">Số lượng mạng con (Subnets)</option>
-                                <option value="hosts">Số Host/máy khả dụng mỗi mạng</option>
+                                <option value="hosts">Số lượng Host/máy khả dụng</option>
                             </select>
                         </div>
 
@@ -146,7 +146,8 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary" style="margin-top: 15px;">
-                        🚀 Phân tích & Giải chi tiết
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        Phân tích & Giải chi tiết
                     </button>
                 </form>
             </section>
@@ -154,10 +155,11 @@
             <!-- Khung kết quả hiển thị tự động và nút xuất Word -->
             <div id="subnet-result" style="display: none; margin-top: 20px;">
                 <section class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
-                        <h2 style="margin: 0;">Lời giải & Phân tích chi tiết</h2>
+                    <div class="result-header">
+                        <h2>Lời giải & Phân tích chi tiết</h2>
                         <button type="button" onclick="exportToWord()" class="btn btn-success">
-                            📄 Xuất bài làm ra file Word (.doc)
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                            Xuất file Word (.doc)
                         </button>
                     </div>
                     <div id="subnet-steps" class="solution-box"></div>
@@ -184,13 +186,19 @@
                         </table>
                     </div>
                 </section>
+
+                <!-- KHU VỰC NGHIÊN CỨU PHÉP TÍNH NHẨM & BẢN CHẤT -->
+                <section class="card" style="margin-top: 20px;">
+                    <h2>💡 Giải thích chi tiết: Cách tính nhẩm & Bản chất từng cột</h2>
+                    <div id="subnet-explanation-box" class="solution-box explanation-style"></div>
+                </section>
             </div>
         </section>
 
     </main>
 
     <footer>
-        Máy tính đổi hệ cơ số & Chia mạng con • JavaScript
+        Máy tính đổi hệ cơ số & Chia mạng con • Tác giả: Thanh Vy
     </footer>
 
 </div>
