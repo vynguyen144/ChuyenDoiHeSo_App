@@ -132,9 +132,9 @@ function solveSubnet(e) {
     if (firstOctet >= 1 && firstOctet <= 126) {
         netClass = 'A'; defaultPrefix = 8; defaultMask = '255.0.0.0';
     } else if (firstOctet >= 128 && firstOctet <= 191) {
-        netClass = 'B'; defaultPrefix = 16; defaultMask = '255.255.0.0';[cite: 1]
+        netClass = 'B'; defaultPrefix = 16; defaultMask = '255.255.0.0';
     } else if (firstOctet >= 192 && firstOctet <= 223) {
-        netClass = 'C'; defaultPrefix = 24; defaultMask = '255.255.255.0';[cite: 2]
+        netClass = 'C'; defaultPrefix = 24; defaultMask = '255.255.255.0';
     } else {
         alert("Vui lòng nhập địa chỉ mạng thuộc lớp A, B hoặc C.");
         return;
@@ -313,7 +313,7 @@ function exportToWord() {
     const splitType = document.getElementById('split-type').value;
 
     const deBai = splitType === 'subnets'
-        ? `Cho địa chỉ mạng ${ipStr}. Hãy chia địa chỉ mạng này thành ${countReq} mạng con để phân bổ cho ${countReq} bộ phận khác nhau trong một cơ quan.`[cite: 1, 2]
+        ? `Cho địa chỉ mạng ${ipStr}. Hãy chia địa chỉ mạng này thành ${countReq} mạng con để phân bổ cho ${countReq} bộ phận khác nhau trong một cơ quan.`
         : `Cho địa chỉ mạng ${ipStr}. Hãy chia địa chỉ mạng này sao cho mỗi mạng con đáp ứng tối thiểu ${countReq} thiết bị host.`;
 
     const htmlDoc = `
